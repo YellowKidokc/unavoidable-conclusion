@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light and Shadow Principle</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e6ed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffb347, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+        }
+        
+        .metaphor-container {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(to bottom, #000000 0%, #1a1a1a 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .light-source {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffd700 0%, #ffb347 50%, transparent 100%);
+            box-shadow: 0 0 100px #ffd700, 0 0 200px #ffb347;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+        
+        .light-rays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 20%, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.1) 40%, transparent 70%);
+        }
+        
+        .obstruction {
+            position: absolute;
+            bottom: 120px;
+            left: 45%;
+            width: 60px;
+            height: 120px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .shadow {
+            position: absolute;
+            bottom: 0;
+            left: 55%;
+            width: 200px;
+            height: 120px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.9) 80%, transparent 100%);
+            border-radius: 0 0 10px 0;
+            transform: skewX(-15deg);
+        }
+        
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .explanation-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+        }
+        
+        .light-card {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .shadow-card {
+            border-color: #666;
+            box-shadow: 0 0 20px rgba(102, 102, 102, 0.2);
+        }
+        
+        .obstruction-card {
+            border-color: #e74c3c;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.2);
+        }
+        
+        .card-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .light-card .card-header { color: #ffd700; }
+        .shadow-card .card-header { color: #999; }
+        .obstruction-card .card-header { color: #e74c3c; }
+        
+        .card-content {
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .analogy-section {
+            background: rgba(156, 39, 176, 0.1);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .analogy-title {
+            font-size: 1.8em;
+            color: #9c27b0;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .analogy-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .analogy-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .equals-sign {
+            font-size: 2em;
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        .conclusion {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .conclusion h3 {
+            color: #ffd700;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">The Light and Shadow Principle</h1>
+        
+        <div class="metaphor-container">
+            <div class="light-source"></div>
+            <div class="light-rays"></div>
+            <div class="obstruction"></div>
+            <div class="shadow"></div>
+        </div>
+        
+        <div class="explanation-grid">
+            <div class="explanation-card light-card">
+                <div class="card-header">THE LIGHT</div>
+                <div class="card-content">
+                    <strong>Source of Coherence</strong><br><br>
+                    • Self-existing<br>
+                    • Creates illumination<br>
+                    • Reveals truth<br>
+                    • Primary reality<br>
+                    • Cannot create darkness
+                </div>
+            </div>
+            
+            <div class="explanation-card shadow-card">
+                <div class="card-header">THE SHADOW</div>
+                <div class="card-content">
+                    <strong>Decoherence Effect</strong><br><br>
+                    • Not a thing itself<br>
+                    • Absence of light<br>
+                    • Reveals obstruction<br>
+                    • Secondary phenomenon<br>
+                    • Dependent on light to exist
+                </div>
+            </div>
+            
+            <div class="explanation-card obstruction-card">
+                <div class="card-header">THE OBSTRUCTION</div>
+                <div class="card-content">
+                    <strong>Blocking Agent</strong><br><br>
+                    • Creates the shadow<br>
+                    • Finite and removable<br>
+                    • Not inherent to light<br>
+                    • Source of the problem<br>
+                    • Can be moved or dissolved
+                </div>
+            </div>
+        </div>
+        
+        <div class="analogy-section">
+            <div class="analogy-title">The Metaphysical Analogy</div>
+            <div class="analogy-grid">
+                <div class="analogy-item">
+                    <strong>Light Source</strong><br>
+                    Ultimate Coherence<br>
+                    (God/Creative Principle)
+                </div>
+                <div class="equals-sign">=</div>
+                <div class="analogy-item">
+                    <strong>Physical Light</strong><br>
+                    Pure, self-existing<br>
+                    illumination
+                </div>
+            </div>
+            <div class="analogy-grid">
+                <div class="analogy-item">
+                    <strong>Evil/Suffering</strong><br>
+                    Decoherence effects<br>
+                    in reality
+                </div>
+                <div class="equals-sign">=</div>
+                <div class="analogy-item">
+                    <strong>Shadow</strong><br>
+                    Absence of light,<br>
+                    not a substance
+                </div>
+            </div>
+            <div class="analogy-grid">
+                <div class="analogy-item">
+                    <strong>Rebellious Agent</strong><br>
+                    Whatever blocks<br>
+                    coherence
+                </div>
+                <div class="equals-sign">=</div>
+                <div class="analogy-item">
+                    <strong>Obstruction</strong><br>
+                    Object blocking<br>
+                    the light
+                </div>
+            </div>
+        </div>
+        
+        <div class="conclusion">
+            <h3>The Key Insight</h3>
+            <p>
+                When you see a shadow, you don't conclude the sun is defective or that darkness is a creative force. 
+                You understand that <strong>something is blocking the light</strong>. 
+                Similarly, evil in the world doesn't disprove ultimate goodness—it proves something is obstructing it.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

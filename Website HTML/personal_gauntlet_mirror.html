@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Personal Gauntlet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000 0%, #1a0a0a 25%, #0a0a1a 50%, #1a1a2e 100%);
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .mirror-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .title-section {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+        }
+        
+        .main-title {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff4757, #ffd700, #64b5f6, #9c27b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: #a0a8b0;
+            margin-bottom: 30px;
+        }
+        
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #e0e6ed;
+            text-align: center;
+        }
+        
+        .mirror-frame {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #64b5f6, #9c27b0, #ff6b35, #ffd700) 1;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .mirror-frame:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(100, 181, 246, 0.2);
+        }
+        
+        .lies-container {
+            display: flex;
+            min-height: 400px;
+        }
+        
+        .shadow-side {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            padding: 30px;
+            position: relative;
+            border-right: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .light-side {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            padding: 30px;
+            position: relative;
+        }
+        
+        .side-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .shadow-side .side-title {
+            color: #ff4757;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        }
+        
+        .light-side .side-title {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .lie-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lie-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .lie-item:hover::before {
+            left: 100%;
+        }
+        
+        .shadow-lie {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+        
+        .shadow-lie:hover {
+            background: rgba(255, 71, 87, 0.2);
+            transform: translateX(-5px);
+        }
+        
+        .light-truth {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .light-truth:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .lie-text {
+            font-style: italic;
+            color: #ffcdd2;
+            margin-bottom: 10px;
+        }
+        
+        .truth-text {
+            font-weight: bold;
+            color: #fff9c4;
+        }
+        
+        .category-header {
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #64b5f6;
+            margin: 40px 0 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .category-header::before,
+        .category-header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #64b5f6, transparent);
+        }
+        
+        .category-header::before { left: -70px; }
+        .category-header::after { right: -70px; }
+        
+        .recognition-section {
+            background: rgba(156, 39, 176, 0.1);
+            border: 2px solid #9c27b0;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            margin: 60px auto;
+            text-align: center;
+        }
+        
+        .recognition-title {
+            font-size: 2.2em;
+            color: #9c27b0;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        
+        .recognition-text {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #e0e6ed;
+        }
+        
+        .threshold-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(100, 181, 246, 0.1) 100%);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ffd700, #64b5f6) 1;
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 1000px;
+            margin: 80px auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .threshold-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 1;
+        }
+        
+        .threshold-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .threshold-title {
+            font-size: 2.8em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #64b5f6, #9c27b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+        
+        .threshold-text {
+            font-size: 1.4em;
+            line-height: 1.8;
+            color: #e0e6ed;
+            margin-bottom: 40px;
+        }
+        
+        .invitation-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .invitation-title {
+            font-size: 1.8em;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .invitation-text {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: #f0f0f0;
+        }
+        
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            animation: float-particle 15s linear infinite;
+        }
+        
+        @keyframes float-particle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .lies-container {
+                flex-direction: column;
+            }
+            
+            .shadow-side {
+                border-right: none;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .threshold-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles" id="particles"></div>
+    
+    <div class="mirror-container">
+        <div class="title-section">
+            <h1 class="main-title">THE PERSONAL GAUNTLET</h1>
+            <p class="subtitle">A Mirror for the Soul</p>
+            <div class="intro-text">
+                The final gauntlet is not cosmic—it is personal. As you read this, don't ask if it's true for "people in general." Ask if it's true for <strong>you</strong>. This is a diagnostic tool. A mirror.
+            </div>
+        </div>
+        
+        <div class="category-header">On Identity and Worth</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I need to find myself."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I'm basically a good person."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I'm too far gone for God."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"You are found in Me. Stop searching; start surrendering."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"All have fallen short of perfection. Your goodness is not the measure; My grace is."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"Where your failure abounds, My grace abounds more. Come as you are."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-header">On Guidance and Feelings</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"Follow your heart."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"God just wants me to be happy."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"The heart can deceive. Follow My Word, which is a lamp to your feet."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"I want you to be holy. True joy is the byproduct of holiness, not the goal of indulgence."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-header">On Effort and Grace</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"God helps those who help themselves."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I need to clean myself up before I can come to God."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"I help the helpless. Come to Me when you are weary, and I will give you rest."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"A hospital is for the sick. Come now, and let us reason together. I will make you clean."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-header">On Path and Exclusivity</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"All roads lead to heaven."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"I am the way, the truth, and the life. No one comes to the Father except through Me."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-header">On Time and Urgency</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I don't have time for God right now."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I'll pray when things get really bad."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"Today is the day. Tomorrow is not promised to anyone."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"Pray without ceasing. I desire a relationship, not just a crisis hotline."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-header">On Meaning and Accountability</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"Nothing I do really matters."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"I can sin now and repent later."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"Every word, thought, and deed matters for eternity. I see it all, and I value it all."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"Do not be deceived. You will reap what you sow. Walk in the light."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-header">On Change and New Life</div>
+        
+        <div class="mirror-frame">
+            <div class="lies-container">
+                <div class="shadow-side">
+                    <div class="side-title">The Shadow Whispers</div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"This is just how I am."</div>
+                    </div>
+                    <div class="lie-item shadow-lie">
+                        <div class="lie-text">"Once I'm saved, how I live doesn't matter."</div>
+                    </div>
+                </div>
+                <div class="light-side">
+                    <div class="side-title">The Light Responds</div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"In Christ, you are a new creation. The old has gone; the new has come."</div>
+                    </div>
+                    <div class="lie-item light-truth">
+                        <div class="truth-text">"Shall we go on sinning so that grace may increase? By no means! Faith without works is dead."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recognition-section">
+            <div class="recognition-title">If You Recognized Yourself</div>
+            <div class="recognition-text">
+                If you recognized your own thoughts in the shadows, do not be discouraged. You are not alone. You have simply identified the nature of the veil. You have seen the patterns of decoherence for what they are.<br><br>
+                <strong>And seeing the veil is the first step to seeing through it.</strong>
+            </div>
+        </div>
+        
+        <div class="threshold-section">
+            <div class="threshold-content">
+                <div class="threshold-title">THE THRESHOLD</div>
+                <div class="threshold-text">
+                    Our journey of reason is complete. We began with a simple question about building and breaking, and arrived at the proof of a Creator and the identification of our resistance to Him.<br><br>
+                    <strong>The intellectual case is now closed. We stand at a threshold.</strong><br><br>
+                    The logical proof can take you no further.
+                </div>
+                <div class="invitation-box">
+                    <div class="invitation-title">The Final Experiment</div>
+                    <div class="invitation-text">
+                        You don't need a cathedral or a priest. You don't need to have all the answers. All you need is a quiet moment and a single, honest question:<br><br>
+                        <em>"If the Artist we have proven exists is real, show me. If the veil of resistance in my heart is real, clear it."</em><br><br>
+                        That's it. That is the entire experiment. A prayer of pure intellectual and spiritual honesty.<br><br>
+                        <strong>The choice, as it has always been, is yours.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createFloatingParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        createFloatingParticles();
+        
+        // Add interaction effects
+        document.querySelectorAll('.lie-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = this.classList.contains('shadow-lie') ? 
+                    'translateX(-10px) scale(1.02)' : 'translateX(10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

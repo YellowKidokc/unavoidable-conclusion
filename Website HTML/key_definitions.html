@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Definitions</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e6ed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 2.8em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #64b5f6, #9c27b0, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+        }
+        
+        .definitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .definition-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .definition-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .finitude-card {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .rebellion-card {
+            border-color: #ff4757;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
+        }
+        
+        .definition-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .definition-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        
+        .finitude-card .definition-icon {
+            background: linear-gradient(45deg, #ffd700, #ffb347);
+            color: #1a1a1a;
+        }
+        
+        .rebellion-card .definition-icon {
+            background: linear-gradient(45deg, #ff4757, #ff6b6b);
+            color: #ffffff;
+        }
+        
+        .definition-title {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        
+        .finitude-card .definition-title {
+            color: #ffd700;
+        }
+        
+        .rebellion-card .definition-title {
+            color: #ff4757;
+        }
+        
+        .definition-subtitle {
+            font-size: 1em;
+            opacity: 0.8;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .definition-content {
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .examples-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .examples-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .example-item {
+            margin: 10px 0;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid;
+        }
+        
+        .finitude-card .example-item {
+            border-left-color: #ffd700;
+        }
+        
+        .rebellion-card .example-item {
+            border-left-color: #ff4757;
+        }
+        
+        .key-distinction {
+            background: rgba(156, 39, 176, 0.1);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .distinction-title {
+            font-size: 1.8em;
+            color: #9c27b0;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .distinction-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .observed {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            border: 1px solid #ffd700;
+        }
+        
+        .hypothetical {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+            border: 1px solid #ff4757;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Essential Definitions</h1>
+        
+        <div class="definitions-grid">
+            <div class="definition-card finitude-card">
+                <div class="status-badge observed">OBSERVED</div>
+                <div class="definition-header">
+                    <div class="definition-icon">CF</div>
+                    <div>
+                        <div class="definition-title">Catastrophic Finitude</div>
+                        <div class="definition-subtitle">System Bugs & Limitations</div>
+                    </div>
+                </div>
+                <div class="definition-content">
+                    Failures, malfunctions, or destructive events arising from the <strong>finite nature of a system</strong>, internal flaws, or limitations. These are essentially <strong>bugs or errors</strong> in an otherwise coherent system—unintentional breakdowns of original guiding principles.
+                </div>
+                <div class="examples-section">
+                    <div class="examples-title">Examples:</div>
+                    <div class="example-item">• Software crashes due to coding bugs</div>
+                    <div class="example-item">• Biological aging and death from cellular limits</div>
+                    <div class="example-item">• Cancer: cells cheating on cooperation</div>
+                    <div class="example-item">• Evolutionary suicide: misadaptation</div>
+                    <div class="example-item">• Vacuum decay: physics reaching instability</div>
+                </div>
+            </div>
+            
+            <div class="definition-card rebellion-card">
+                <div class="status-badge hypothetical">HYPOTHETICAL</div>
+                <div class="definition-header">
+                    <div class="definition-icon">OR</div>
+                    <div>
+                        <div class="definition-title">Ontological Rebellion</div>
+                        <div class="definition-subtitle">Independent Evil Force</div>
+                    </div>
+                </div>
+                <div class="definition-content">
+                    The emergence of a <strong>stable, novel subsystem or agent</strong> whose primary function is the <strong>willful annihilation of coherence</strong>. A true anti-coherent principle that doesn't just lack good, but actively seeks to destroy order wherever it exists <em>as an end in itself</em>.
+                </div>
+                <div class="examples-section">
+                    <div class="examples-title">Would require:</div>
+                    <div class="example-item">• Evil as its own stable telos</div>
+                    <div class="example-item">• Thriving on pure destruction</div>
+                    <div class="example-item">• Self-sustaining anti-order</div>
+                    <div class="example-item">• Independent creative malevolence</div>
+                    <div class="example-item">• Reversing ontological order itself</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-distinction">
+            <div class="distinction-title">The Central Thesis</div>
+            <div class="distinction-content">
+                All empirically observable "evil" phenomena in natural systems are manifestations of <strong>Catastrophic Finitude</strong>, not true <strong>Ontological Rebellion</strong>. Every case of destruction or disorder reduces to something <em>breaking or limiting</em> the good, rather than an equal-and-opposite creative power devoted to evil.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

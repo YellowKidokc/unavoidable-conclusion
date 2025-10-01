@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ontological Asymmetry</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e6ed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .main-title {
+            text-align: center;
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #64b5f6, #9c27b0, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #a0a8b0;
+            margin-bottom: 50px;
+        }
+        
+        .asymmetry-display {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 60px 0;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .principle-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
+        .coherence-box {
+            border-color: #64b5f6;
+            box-shadow: 0 0 30px rgba(100, 181, 246, 0.2);
+        }
+        
+        .decoherence-box {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+        }
+        
+        .principle-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .coherence-box .principle-title {
+            color: #64b5f6;
+        }
+        
+        .decoherence-box .principle-title {
+            color: #ff6b6b;
+        }
+        
+        .principle-subtitle {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .properties {
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .property {
+            margin: 12px 0;
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .coherence-box .property {
+            border-left-color: #64b5f6;
+        }
+        
+        .decoherence-box .property {
+            border-left-color: #ff6b6b;
+        }
+        
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 20px;
+        }
+        
+        .vs-text {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 20px 0;
+        }
+        
+        .asymmetry-note {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .asymmetry-note h3 {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .asymmetry-note p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        
+        .status-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .primary {
+            background: rgba(100, 181, 246, 0.2);
+            color: #64b5f6;
+            border: 1px solid #64b5f6;
+        }
+        
+        .secondary {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">The Ontological Asymmetry</h1>
+        <p class="subtitle">Good and Evil Are Not Equal Opposites</p>
+        
+        <div class="asymmetry-display">
+            <div class="principle-box coherence-box">
+                <div class="status-indicator primary">PRIMARY</div>
+                <div class="principle-title">COHERENCE</div>
+                <div class="principle-subtitle">Order • Creation • Being</div>
+                <div class="properties">
+                    <div class="property">✓ Self-sustaining</div>
+                    <div class="property">✓ Generative (+1)</div>
+                    <div class="property">✓ Creates structure</div>
+                    <div class="property">✓ Builds complexity</div>
+                    <div class="property">✓ Fundamental existence</div>
+                </div>
+            </div>
+            
+            <div class="vs-divider">
+                <div class="vs-text">≠</div>
+            </div>
+            
+            <div class="principle-box decoherence-box">
+                <div class="status-indicator secondary">SECONDARY</div>
+                <div class="principle-title">DECOHERENCE</div>
+                <div class="principle-subtitle">Chaos • Destruction • Non-being</div>
+                <div class="properties">
+                    <div class="property">✗ Parasitic on order</div>
+                    <div class="property">✗ Destructive (-1)</div>
+                    <div class="property">✗ Breaks structure</div>
+                    <div class="property">✗ Reduces complexity</div>
+                    <div class="property">✗ Absence/privation</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="asymmetry-note">
+            <h3>The Fundamental Asymmetry</h3>
+            <p><strong>Coherence</strong> can exist independently and create order from chaos.</p>
+            <p><strong>Decoherence</strong> cannot exist independently—it can only break what coherence has built.</p>
+            <p>Like light and darkness: light is a thing, darkness is the absence of light.</p>
+        </div>
+    </div>
+</body>
+</html>

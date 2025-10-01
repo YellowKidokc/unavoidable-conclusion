@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THEOPHYSICS: The Unavoidable Conclusion</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #15151a;
+            --bg-tertiary: #1f1f28;
+            --gold-primary: #D4AF37;
+            --gold-light: #F4E4A1;
+            --blue-primary: #2E86AB;
+            --blue-light: #A9D6E5;
+            --white-primary: #F8F9FA;
+            --gray-light: #E9ECEF;
+            --gray-medium: #ADB5BD;
+            --gray-dark: #495057;
+            --accent-gradient: linear-gradient(135deg, #D4AF37, #2E86AB);
+            --glow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: var(--white-primary);
+            background: var(--bg-primary);
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(46, 134, 171, 0.1) 0%, transparent 50%),
+                var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            animation: gridScroll 20s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold-primary);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            text-shadow: var(--glow);
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--gray-light);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Content Grid */
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--gray-medium);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: linear-gradient(145deg, var(--bg-tertiary), var(--bg-secondary));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--gray-dark);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-badge {
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .card-title {
+            color: var(--gold-primary);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-link {
+            color: var(--blue-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-link:hover {
+            color: var(--gold-primary);
+            gap: 1rem;
+        }
+
+        /* Feature Section */
+        .feature-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(46, 134, 171, 0.1));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid var(--gold-primary);
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .feature-title {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-text {
+            font-size: 1.2rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-tertiary);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--gray-dark);
+            margin-top: 6rem;
+        }
+
+        .footer-text {
+            color: var(--gray-medium);
+            margin-bottom: 1rem;
+        }
+
+        .footer-emphasis {
+            color: var(--gold-primary);
+            font-style: italic;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">THEOPHYSICS</div>
+            <h1 class="main-title">The Unavoidable Conclusion</h1>
+            <p class="subtitle">A Proof of God from First Principles</p>
+            <p class="tagline">"Where Logic Meets the Sacred"</p>
+            <a href="unavoidable-conclusion-complete.html" class="cta-button">Begin Your Journey →</a>
+        </div>
+    </section>
+
+    <!-- Main Argument Section -->
+    <section class="content-section" id="main-argument">
+        <div class="section-header">
+            <h2 class="section-title">The Core Argument</h2>
+            <p class="section-description">
+                Three simple questions. Your own logic. An unavoidable conclusion about the nature of reality.
+            </p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card" onclick="window.location.href='unavoidable-conclusion-complete.html'">
+                <div class="card-badge">★</div>
+                <h3 class="card-title">The Complete Argument</h3>
+                <p class="card-description">
+                    The full journey through logic, science, and theology. Experience the complete proof with all sections, visuals, and interactive elements in one seamless document.
+                </p>
+                <a href="unavoidable-conclusion-complete.html" class="card-link">Read Complete Version →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='three_gates_visual.html'">
+                <div class="card-badge">3</div>
+                <h3 class="card-title">The Three Gates Visual</h3>
+                <p class="card-description">
+                    See the philosophical proof laid out in an interactive visual format. Three questions that prove the existence of an ultimate Source through pure logic.
+                </p>
+                <a href="three_gates_visual.html" class="card-link">Experience the Gates →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='key_definitions.html'">
+                <div class="card-badge">∞</div>
+                <h3 class="card-title">Key Definitions</h3>
+                <p class="card-description">
+                    Master the precise terminology. Understand Coherence, Decoherence, and the logical framework that makes this proof airtight.
+                </p>
+                <a href="key_definitions.html" class="card-link">Study Definitions →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Demonstrations Section -->
+    <section class="content-section" id="visuals" style="background: rgba(255, 255, 255, 0.02);">
+        <div class="section-header">
+            <h2 class="section-title">Visual Demonstrations</h2>
+            <p class="section-description">
+                Complex concepts made simple through interactive visualizations and metaphors.
+            </p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card" onclick="window.location.href='light_shadow_metaphor.html'">
+                <div class="card-badge">☀</div>
+                <h3 class="card-title">Light & Shadow Metaphor</h3>
+                <p class="card-description">
+                    The fundamental principle visualized: Light doesn't create darkness—something blocks the light. Experience this truth interactively.
+                </p>
+                <a href="light_shadow_metaphor.html" class="card-link">See the Metaphor →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='empty_full_room_3d.html'">
+                <div class="card-badge">∅</div>
+                <h3 class="card-title">The Empty Room</h3>
+                <p class="card-description">
+                    A tale of two rooms: What can absolute nothing create? Experience the ultimate thought experiment about existence itself.
+                </p>
+                <a href="empty_full_room_3d.html" class="card-link">Enter the Void →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='axiom_opening_visual.html'">
+                <div class="card-badge">Ω</div>
+                <h3 class="card-title">Axiom Opening</h3>
+                <p class="card-description">
+                    The foundation of all logic. See how the most basic truths about reality lead inevitably to profound conclusions.
+                </p>
+                <a href="axiom_opening_visual.html" class="card-link">Explore Axioms →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive Section -->
+    <section class="content-section" id="deep-dives">
+        <div class="section-header">
+            <h2 class="section-title">Deep Investigations</h2>
+            <p class="section-description">
+                Go deeper into specific questions. Face the hard tests. Identify the shadow.
+            </p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card" onclick="window.location.href='profile_rebel_satan.html'">
+                <div class="card-badge">⚡</div>
+                <h3 class="card-title">Profile of a Rebel</h3>
+                <p class="card-description">
+                    We've proven a shadow exists. Now let's identify its source through rigorous logical profiling. Does Satan fit the evidence?
+                </p>
+                <a href="profile_rebel_satan.html" class="card-link">Identify the Shadow →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='great_filter_gauntlet.html'">
+                <div class="card-badge">∞</div>
+                <h3 class="card-title">The Great Filter Gauntlet</h3>
+                <p class="card-description">
+                    Testing the "cosmic accident" theory against the strict rules of mathematics, physics, and biology. Can chance survive?
+                </p>
+                <a href="great_filter_gauntlet.html" class="card-link">Enter the Gauntlet →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='personal_gauntlet_mirror.html'">
+                <div class="card-badge">🪞</div>
+                <h3 class="card-title">The Personal Mirror</h3>
+                <p class="card-description">
+                    The final test is personal. A mirror for your soul to recognize the patterns of resistance within. Are you ready?
+                </p>
+                <a href="personal_gauntlet_mirror.html" class="card-link">Face the Mirror →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Section -->
+    <section class="content-section" id="academic" style="background: rgba(255, 255, 255, 0.02);">
+        <div class="section-header">
+            <h2 class="section-title">Academic Framework</h2>
+            <p class="section-description">
+                The rigorous foundation. Research papers, roadmaps, and scholarly documentation.
+            </p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card" onclick="window.location.href='paper_roadmap.html'">
+                <div class="card-badge">📍</div>
+                <h3 class="card-title">Paper Roadmap</h3>
+                <p class="card-description">
+                    Navigate the complete research framework. Understand how all the pieces fit together in a cohesive intellectual architecture.
+                </p>
+                <a href="paper_roadmap.html" class="card-link">View Roadmap →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='academic.html'">
+                <div class="card-badge">📚</div>
+                <h3 class="card-title">Academic Hub</h3>
+                <p class="card-description">
+                    Access the full collection of research papers, citations, and scholarly work supporting these arguments.
+                </p>
+                <a href="academic.html" class="card-link">Browse Research →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Box -->
+    <section class="content-section">
+        <div class="feature-box">
+            <h3 class="feature-title">The Promise</h3>
+            <p class="feature-text">
+                We're not asking you to believe anything you don't already know to be true. 
+                No ancient books. No blind faith. Just three simple questions about reality itself—
+                questions whose answers are sitting right in front of you.
+                <br><br>
+                <strong>By the time you're done, you'll have used your own logic to reach the most important conclusion of your life.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">
+            © 2025 THEOPHYSICS Research Initiative | David Lowe
+        </p>
+        <p class="footer-emphasis">"Where Logic Meets the Sacred"</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

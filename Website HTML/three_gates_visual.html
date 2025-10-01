@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Three Gates</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e6ed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #64b5f6, #9c27b0, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #a0a8b0;
+            margin-bottom: 50px;
+        }
+        
+        .gates-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .gate {
+            flex: 1;
+            min-width: 320px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 3px solid;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gate:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gate-1 {
+            border-color: #64b5f6;
+            box-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
+        }
+        
+        .gate-2 {
+            border-color: #9c27b0;
+            box-shadow: 0 0 30px rgba(156, 39, 176, 0.3);
+        }
+        
+        .gate-3 {
+            border-color: #ff6b35;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+        
+        .gate-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .gate-1 .gate-number { background: linear-gradient(45deg, #64b5f6, #42a5f5); }
+        .gate-2 .gate-number { background: linear-gradient(45deg, #9c27b0, #ab47bc); }
+        .gate-3 .gate-number { background: linear-gradient(45deg, #ff6b35, #ff8a65); }
+        
+        .gate-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0 25px 0;
+        }
+        
+        .gate-1 .gate-title { color: #64b5f6; }
+        .gate-2 .gate-title { color: #9c27b0; }
+        .gate-3 .gate-title { color: #ff6b35; }
+        
+        .gate-question {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid;
+            font-size: 1.1em;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+        
+        .gate-1 .gate-question { border-left-color: #64b5f6; }
+        .gate-2 .gate-question { border-left-color: #9c27b0; }
+        .gate-3 .gate-question { border-left-color: #ff6b35; }
+        
+        .gate-answer {
+            text-align: center;
+            margin: 25px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .gate-1 .gate-answer { color: #64b5f6; }
+        .gate-2 .gate-answer { color: #9c27b0; }
+        .gate-3 .gate-answer { color: #ff6b35; }
+        
+        .gate-consequence {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .gate-consequence strong {
+            color: #ffd700;
+        }
+        
+        .arrows {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .arrow {
+            font-size: 3em;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .conclusion {
+            background: rgba(255, 215, 0, 0.15);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .conclusion-title {
+            font-size: 2.2em;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .conclusion-text {
+            font-size: 1.3em;
+            line-height: 1.7;
+            color: #e0e6ed;
+        }
+        
+        @media (max-width: 768px) {
+            .gates-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .gate {
+                max-width: 500px;
+            }
+            
+            .arrows {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">The Three Gates</h1>
+        <p class="subtitle">A Proof Through Simple Questions</p>
+        
+        <div class="gates-container">
+            <div class="gate gate-1">
+                <div class="gate-number">1</div>
+                <div class="gate-title">The Duality Gate</div>
+                <div class="gate-question">
+                    Do you agree that there is a meaningful, objective difference between an act of creation and an act of destruction?
+                </div>
+                <div class="gate-answer">YES</div>
+                <div class="gate-consequence">
+                    <strong>You have agreed to a foundational truth:</strong> Reality has a built-in duality. Coherence and decoherence are not the same thing.
+                </div>
+            </div>
+            
+            <div class="gate gate-2">
+                <div class="gate-number">2</div>
+                <div class="gate-title">The Nature Gate</div>
+                <div class="gate-question">
+                    Can the fundamental principle of Coherence (+1), by its very nature, perform an act of pure Decoherence (-1)?
+                </div>
+                <div class="gate-answer">NO</div>
+                <div class="gate-consequence">
+                    <strong>You have affirmed a fundamental law:</strong> The creative principle cannot be, and cannot commit, the destructive principle.
+                </div>
+            </div>
+            
+            <div class="gate gate-3">
+                <div class="gate-number">3</div>
+                <div class="gate-title">The Shadow Gate</div>
+                <div class="gate-question">
+                    If the ultimate source is pure Coherence and cannot create Decoherence, what does the existence of shadows prove?
+                </div>
+                <div class="gate-answer">OBSTRUCTION</div>
+                <div class="gate-consequence">
+                    <strong>You have proven the shadow exists:</strong> Something is blocking the light, and it is not cast by the Light itself.
+                </div>
+            </div>
+        </div>
+        
+        <div class="arrows">
+            <span class="arrow">↓</span>
+        </div>
+        
+        <div class="conclusion">
+            <div class="conclusion-title">The Unavoidable Conclusion</div>
+            <div class="conclusion-text">
+                Through your own logic, you have proven that evil is not a co-equal force opposing good, 
+                but a shadow cast by something turning away from an ultimate Source of pure Coherence. 
+                <br><br>
+                <strong>The next question is obvious: What is casting the shadow?</strong>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
